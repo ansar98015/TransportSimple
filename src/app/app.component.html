@@ -1,30 +1,27 @@
-<div class="container">
-  <h1>Trip Route Visualizer</h1>
-  
-  <div class="form-container">
-    <div class="form-group">
-      <input [(ngModel)]="newTrip.start" placeholder="From (e.g. BLR)">
-      <input [(ngModel)]="newTrip.end" placeholder="To (e.g. MAA)">
-      <button (click)="addTrip()">Add Trip</button>
+<div>
+  <div class="header">
+    <div class="hederName">
+      <div>Name</div>
+      <div><input name="userName" type="text" (change)="filterByValue($event,'name')"></div>
+    </div>
+    <div class="hederName">
+      <div>Company Name</div>
+      <div><input name="companyName" type="text" (change)="filterByValue($event,'comp')"></div>
+    </div>
+    <div class="hederName">
+      <div>Designation</div>
+      <div><input name="Designation" type="text" (change)="filterByValue($event,'desi')"></div>
     </div>
   </div>
-
-  <div class="visualization-container">
-    <div *ngFor="let trip of trips; let i = index" 
-      class="trip" 
-      [style.margin-left.px]="getTripLevel(i) * 50"
-      [style.margin-top.px]="getTripLevel(i) === 2 ? -30 : 0">
-      
-      <div class="location start">{{trip.start}}</div>
-      
-      <div class="connection">
-        <div class="line"></div>
-        <div *ngIf="!isContinued(i)" class="arrow">→</div>
+  <div class="body">
+    <div class="bodyRows" *ngFor="let item of searchData">
+      <div class="bodyRow">
+        <div class="nameClm">{{item.name}}</div>
+        <div class="nameClm">{{item.email}}</div>
       </div>
-      
-      <div class="location end">{{trip.end}}</div>
-      
-      <button class="remove-btn" (click)="removeTrip(trip.id)">x</button>
+      <div class="bodyRow">{{item.company.name}}</div>
+      <div class="bodyRow">{{item.company.designation}}</div>
     </div>
   </div>
 </div>
+
